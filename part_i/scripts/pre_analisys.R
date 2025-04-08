@@ -95,3 +95,24 @@ idade_invalid <- sum(dados$Idade < 18 | dados$Idade > 120, na.rm = TRUE)
 cat("\nErros numéricos detectados:\n")
 cat("Valores inválidos em Renda:", renda_invalid, "\n")
 cat("Valores inválidos em Idade (<18 ou >120):", idade_invalid, "\n")
+
+
+# Filtrar registros válidos para todas as variáveis categóricas e numéricas
+dados_corrigidos <- dados %>%
+  filter(
+    Região %in% regioes_validas,
+    Área %in% areas_validas,
+    Ocupação %in% ocupacoes_validas,
+    Opinião %in% opinioes_validas,
+    !is.na(Renda),
+    Idade >= 18 & Idade <= 120
+  )
+
+# Caminho para o novo CSV corrigido
+ARQUIVO_CORRIGIDO <- "../rpt/servico_publico_dados_corrigido.csv"
+
+# Salvar o novo arquivo
+write.csv(dados_corrigidos, file = ARQUIVO_CORRIGIDO, row.names = FALSE)
+
+message("\n💾 [INFO] - Dados corrigidos salvos em: ", ARQUIVO_CORRIGIDO)
+
