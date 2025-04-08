@@ -8,7 +8,7 @@ ARQUIVO_DADOS <- "../data/servico_publico_dados.csv"
 
 
 if (file.exists(ARQUIVO_DADOS)) {
-  message("📂 Lendo o arquivo de dados: ", ARQUIVO_DADOS)
+  message("📂 [DEBUG] - Lendo o arquivo de dados: ", ARQUIVO_DADOS)
   
   # Leitura com separador correto
   dados <- read.csv(ARQUIVO_DADOS,
@@ -17,7 +17,7 @@ if (file.exists(ARQUIVO_DADOS)) {
                     stringsAsFactors = FALSE,
                     fileEncoding = "UTF-8")
 
-  message("\n✅ Arquivo lido com sucesso!")
+  message("\n✅ [DEBUG] - Arquivo lido com sucesso!")
   message("------------------------------------------\n")
 } else {
   message("❌ ERRO: Arquivo não encontrado em '", ARQUIVO_DADOS, "'")
@@ -50,11 +50,10 @@ tabela_na <- data.frame(
   row.names = NULL
 )
 
-cat("📊 [DEBUG] - Tabela de Dados Ausentes (Incluindo Vazios e 'NA'):\n\n")
+message("📊 [DEBUG] - Tabela de Dados Ausentes (Incluindo Vazios e 'NA'):\n")
 print(tabela_na)
 
 message("------------------------------------------\n")
-
 
 # Gráfico de barras dos dados ausentes
 ggplot(tabela_na, aes(x = Variável, y = `Percentual`)) +
@@ -83,7 +82,7 @@ erros_registro <- list(
   Opinião = valores_invalidos("Opinião", opinioes_validas)
 )
 
-print("[DEBUG] - Erros de Registro Detectados:")
+message("⚠️ [DEBUG] - Erros de Registro Detectados:\n")
 print(erros_registro)
 
 # Verificação de Renda e Idade

@@ -58,13 +58,13 @@ setup:
 
 # Instala pacotes R necessários
 install_packages: setup
-	Rscript $(SCRIPTS_DIR)/$@.R > $(LOGS_DIR)/$@.log;
+	Rscript $(SCRIPTS_DIR)/$@.R | tee $(LOGS_DIR)/$@.log;
 	@/bin/touch $(VPATH)/$@ 
 
 
 # Executa o script principal
 pre_analisys: install_packages
-	Rscript $(SCRIPTS_DIR)/$@.R 
+	Rscript $(SCRIPTS_DIR)/$@.R | tee $(LOGS_DIR)/$@.log;
 	@/bin/touch $(VPATH)/$@ 
 	@mv Rplots.pdf $(DBS_DIR)/pre_analisys.pdf
 
