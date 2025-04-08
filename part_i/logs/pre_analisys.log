@@ -1,0 +1,41 @@
+'data.frame':	10000 obs. of  6 variables:
+ $ Região  : chr  "Dalmácia" "Dalmácia" "Catamarca" "Nortúmbria" ...
+ $ Área    : chr  "Educação" "Infraestrutura" "Educação" "Infraestrutura" ...
+ $ Ocupação: chr  "Funcionário público" "Assalariado/Autônomo" "Funcionário público" "Aposentado" ...
+ $ Opinião : chr  "Indiferente" "Indiferente" "Insatisfatório" "Excelente" ...
+ $ Renda   : chr  "1,89" "1,63" "4,5" "1,17" ...
+ $ Idade   : int  29 46 37 18 38 26 29 21 45 43 ...
+  Variável Valores.Ausentes Percentual
+1   Região               64       0.64
+2     Área               38       0.38
+3 Ocupação               49       0.49
+4  Opinião               48       0.48
+5    Renda               48       0.48
+6    Idade               45       0.45
+$Região
+ [1] "Dalm "    "Querét "  "Cata "    "Dalmác "  " "        "Aquit "  
+ [7] "Nortúmb " "Dalmáci " "Nortú "   "Catam "   "Aquitân " "Queré "  
+[13] "Queréta " "Aqui "    "Dalmá "   "Catama "  "Quer "    "Nortúm " 
+[19] "Catamar " "Nort "    "Aquitâ " 
+
+$Área
+ [1] " "        "Educa "   "Saúd "    "Saúde "   "Saúde p " "Educ "   
+ [7] "Segur "   "Segu "    "Segura "  "Infraes " "Educaçã " "Seguran "
+[13] "Saúde  "  "Educaç "  "Infra "   "Infrae "  "Infr "   
+
+$Ocupação
+ [1] " "        "Profi "   "Assala "  "Aposent " "Desempr " "Assa "   
+ [7] "Apose "   "Assalar " "Funcio "  "Funci "   "Profis "  "Funcion "
+[13] "Func "    "Desem "   "Assal "   "Empr "    "Aposen "  "Empre "  
+[19] "Empres "  "Dese "    "Apos "    "Profiss " "Desemp " 
+
+$Opinião
+ [1] "Péssim "  " "        "Excelen " "Péssi "   "Indif "   "Péss "   
+ [7] "Péssimo " "Indifer " "Insati "  "Insa "    "Indife "  "Indi "   
+[13] "Satisf "  "Satis "   "Satisfa " "Excele "  "Insatis " "Insat "  
+[19] "Sati "    "Excel "   "Exce "   
+
+
+Erros numéricos detectados:
+Valores inválidos em Renda: 48 
+Valores inválidos em Idade (<18 ou >120): 0 
