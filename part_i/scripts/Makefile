@@ -24,7 +24,7 @@ VPATH=make
 REPORTS_DIR=../rpt
 SCRIPTS_DIR=../scripts
 LOGS_DIR=../logs
-DBS_DIR=../dbs
+RPT_DIR=../rpt
 
 
 # Mostra os comandos disponíveis
@@ -52,7 +52,7 @@ setup:
 	@/bin/mkdir -p $(VPATH)
 	@mkdir -p $(REPORTS_DIR)
 	@mkdir -p $(LOGS_DIR)
-	@mkdir -p $(DBS_DIR)
+	@mkdir -p $(RPT_DIR)
 	@/bin/touch $(VPATH)/$@
 
 
@@ -66,7 +66,7 @@ install_packages: setup
 pre_analisys: install_packages
 	Rscript $(SCRIPTS_DIR)/$@.R | tee $(LOGS_DIR)/$@.log;
 	@/bin/touch $(VPATH)/$@ 
-	@mv Rplots.pdf $(DBS_DIR)/pre_analisys.pdf
+	@mv Rplots.pdf $(RPT_DIR)/pre_analisys.pdf
 
 # Faz tudo: instala e executa
 all: install_packages pre_analisys
