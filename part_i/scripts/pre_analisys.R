@@ -4,33 +4,60 @@ library(ggplot2)
 library(readr)
 library(tidyr)
 
-# Ler a planilha (substitua 'dados.csv' pelo nome real do seu arquivo)
-dados <- read_csv2("../data/servico_publico_dados.csv", na = c("", " ", "NA"))
+ARQUIVO_DADOS <- "../data/servico_publico_dados.csv"
+
+
+if (file.exists(ARQUIVO_DADOS)) {
+  message("📂 Lendo o arquivo de dados: ", ARQUIVO_DADOS)
+  
+  # Leitura com separador correto
+  dados <- read.csv(ARQUIVO_DADOS,
+                    sep = ",",
+                    quote = "\"",
+                    stringsAsFactors = FALSE,
+                    fileEncoding = "UTF-8")
+
+  message("\n✅ Arquivo lido com sucesso!")
+  message("------------------------------------------\n")
+} else {
+  message("❌ ERRO: Arquivo não encontrado em '", ARQUIVO_DADOS, "'")
+  stop("[DEBUG] - Interrompendo execução: arquivo de dados não existe.")
+}
 
 # Verificar estrutura dos dados
 str(dados)
+message("------------------------------------------\n")
 
-# --- 1) Verificar dados ausentes por variável ---
-dados_na <- dados %>% summarise_all(~sum(is.na(.)))
+# Função para contar ausentes reais ou disfarçados (vazios, espaço, "NA")
+contar_ausentes <- function(coluna) {
+  sum(is.na(coluna) | trimws(coluna) == "" | trimws(tolower(coluna)) == "na")
+}
+
+# Aplica a função a cada coluna
+dados_na <- sapply(dados, contar_ausentes)
 
 # Total de linhas
 total_linhas <- nrow(dados)
 
-# Percentual de dados perdidos
-percentual_na <- dados_na / total_linhas * 100
+# Percentual de dados ausentes
+percentual_na <- round((dados_na / total_linhas) * 100, 2)
 
-# Criar uma tabela com valores absolutos e percentuais
+# Monta a tabela
 tabela_na <- data.frame(
-  Variável = colnames(dados),
-  `Valores Ausentes` = as.numeric(dados_na),
-  `Percentual (%)` = round(as.numeric(percentual_na), 2)
+  Variável = names(dados),
+  `Valores Ausentes` = dados_na,
+  `Percentual` = percentual_na,
+  row.names = NULL
 )
 
-print("Tabela de Dados Ausentes:")
+cat("📊 [DEBUG] - Tabela de Dados Ausentes (Incluindo Vazios e 'NA'):\n\n")
 print(tabela_na)
 
+message("------------------------------------------\n")
+
+
 # Gráfico de barras dos dados ausentes
-ggplot(tabela_na, aes(x = Variável, y = `Percentual (%)`)) +
+ggplot(tabela_na, aes(x = Variável, y = `Percentual`)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(title = "Percentual de Dados Ausentes por Variável", y = "Percentual (%)", x = "Variável") +
   theme_minimal()
@@ -56,7 +83,7 @@ erros_registro <- list(
   Opinião = valores_invalidos("Opinião", opinioes_validas)
 )
 
-print("Erros de Registro Detectados:")
+print("[DEBUG] - Erros de Registro Detectados:")
 print(erros_registro)
 
 # Verificação de Renda e Idade

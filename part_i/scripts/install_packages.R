@@ -1,5 +1,5 @@
 # Lista de pacotes necessários
-packages <- c("dplyr", "ggplot2", "readr", "tidyr")
+packages <- c("dplyr", "ggplot2", "readr", "tidyr", "jsonlite")
 
 # Instala somente os que ainda não estão instalados
 installed <- packages %in% rownames(installed.packages())

@@ -49,6 +49,7 @@ help:
 .PHONY: help
 
 setup:
+	@/bin/mkdir -p $(VPATH)
 	@mkdir -p $(REPORTS_DIR)
 	@mkdir -p $(LOGS_DIR)
 	@mkdir -p $(DBS_DIR)
@@ -57,14 +58,18 @@ setup:
 
 # Instala pacotes R necessários
 install_packages: setup
-	Rscript $(SCRIPTS_DIR)/$@.R
-	@/bin/touch $(VPATH)/$@ > $(LOGS_DIR)/$@.log;
+	Rscript $(SCRIPTS_DIR)/$@.R > $(LOGS_DIR)/$@.log;
+	@/bin/touch $(VPATH)/$@ 
 
 
 # Executa o script principal
-pre_analisys:
-	Rscript $(SCRIPTS_DIR)/$@.R
-	@/bin/touch $(VPATH)/$@ > $(LOGS_DIR)/$@.log;
+pre_analisys: install_packages
+	Rscript $(SCRIPTS_DIR)/$@.R 
+	@/bin/touch $(VPATH)/$@ 
+	@mv Rplots.pdf $(DBS_DIR)/pre_analisys.pdf
 
 # Faz tudo: instala e executa
 all: install_packages pre_analisys
+
+clean: 
+	ls ../work | grep -v Makefile | xargs rm -rf
