@@ -1,19 +1,20 @@
 # ------------------------------------------------------------------------------
-# Makefile para Análise de Dados da Pesquisa ENGABELAX - Pindorama
+# Makefile para Análise Individual da Pesquisa ENGABELAX - Pindorama
 #
 # Autor: Rafael Oliveira
-# Data de Criação: 08/04/2025
-# Última Modificação: 08/04/2025
-# Versão: 1.0.0
+# Data de Criação: 12/04/2025
+# Última Modificação: 12/04/2025
+# Versão: 1.1.0
 #
 # Descrição:
-#   Este Makefile automatiza o processo de instalação de pacotes e execução
-#   do script de análise em R para a base de dados da pesquisa de opinião.
+#   Este Makefile automatiza a instalação de pacotes e execução do script
+#   de análise individual em R sobre os dados corrigidos da pesquisa.
 #
 # Histórico de Versões:
-#   v0.0.1 - 08/04/2025 - Criação inicial do Makefile com targets:
-#              help, install, run, all
+#   v1.1.0 - 12/04/2025 - Adicionado target 'individual_analisys' com geração de PDF
+#   v1.0.0 - 08/04/2025 - Versão base com targets: help, install_packages, all
 # ------------------------------------------------------------------------------
+
 
 
 ################################################
