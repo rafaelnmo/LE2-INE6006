@@ -1,5 +1,5 @@
 
-▶️ Análise da variável: Região
+▶️ [DEBUG] - Análise da variável: Região
       Região    n
 1   Dalmácia 3602
 2  Catamarca 2300
@@ -7,14 +7,14 @@
 4 Nortúmbria 1150
 5  Querétaro 1080
 
-▶️ Análise da variável: Área
+▶️ [DEBUG] - Análise da variável: Área
                Área    n
 1          Educação 5052
 2 Segurança pública 1655
 3     Saúde pública 1503
 4    Infraestrutura 1450
 
-▶️ Análise da variável: Ocupação
+▶️ [DEBUG] - Análise da variável: Ocupação
               Ocupação    n
 1 Assalariado/Autônomo 4991
 2  Funcionário público 1265
@@ -25,7 +25,7 @@
 
 Percentual de desempregados: 5.82 %
 
-▶️ Análise da variável: Opinião
+▶️ [DEBUG] - Análise da variável: Opinião
          Opinião    n
 1    Indiferente 3350
 2        Péssimo 3000
@@ -33,13 +33,13 @@ Percentual de desempregados: 5.82 %
 4   Satisfatório  963
 5      Excelente  771
 
-▶️ Análise da variável: Renda
+▶️ [DEBUG] - Análise da variável: Renda
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   1.000   1.690   2.420   2.954   3.630  32.040 
 
 Percentual com renda abaixo de 3 salários mínimos: 64.76 %
 
-▶️ Análise da variável: Idade
+▶️ [DEBUG] - Análise da variável: Idade
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   18.00   26.00   33.00   33.58   40.00   80.00 
 

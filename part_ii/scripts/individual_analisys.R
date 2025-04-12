@@ -24,7 +24,7 @@ if (file.exists(ARQUIVO_CORRIGIDO)) {
 
 
 # 3) Análise da variável Região
-cat("\n\u25B6\uFE0F Análise da variável: Região\n")
+cat("\n\u25B6\uFE0F [DEBUG] - Análise da variável: Região\n")
 regiao_freq <- dados %>% count(Região, sort = TRUE)
 print(regiao_freq)
 
@@ -36,7 +36,7 @@ ggplot(regiao_freq, aes(x = fct_reorder(Região, n), y = n)) +
   coord_flip()
 
 # 4) Análise da variável Área
-cat("\n\u25B6\uFE0F Análise da variável: Área\n")
+cat("\n\u25B6\uFE0F [DEBUG] - Análise da variável: Área\n")
 area_freq <- dados %>% count(Área, sort = TRUE)
 print(area_freq)
 
@@ -47,7 +47,7 @@ ggplot(area_freq, aes(x = fct_reorder(Área, n), y = n)) +
   coord_flip()
 
 # 5) Análise da variável Ocupação
-cat("\n\u25B6\uFE0F Análise da variável: Ocupação\n")
+cat("\n\u25B6\uFE0F [DEBUG] - Análise da variável: Ocupação\n")
 ocup_freq <- dados %>% count(Ocupação, sort = TRUE)
 print(ocup_freq)
 
@@ -56,7 +56,7 @@ perc_desemprego <- round(desempregados / nrow(dados) * 100, 2)
 cat("\nPercentual de desempregados:", perc_desemprego, "%\n")
 
 # 6) Análise da variável Opinião
-cat("\n\u25B6\uFE0F Análise da variável: Opinião\n")
+cat("\n\u25B6\uFE0F [DEBUG] - Análise da variável: Opinião\n")
 opiniao_freq <- dados %>% count(Opinião, sort = TRUE)
 print(opiniao_freq)
 
@@ -67,7 +67,7 @@ ggplot(opiniao_freq, aes(x = fct_reorder(Opinião, n), y = n)) +
   coord_flip()
 
 # 7) Análise da variável Renda
-cat("\n\u25B6\uFE0F Análise da variável: Renda\n")
+cat("\n\u25B6\uFE0F [DEBUG] - Análise da variável: Renda\n")
 salario_minimo <- 1  # assumindo que o valor é em salários mínimos
 
 dados$Renda <- as.numeric(dados$Renda)
@@ -84,7 +84,7 @@ ggplot(dados, aes(x = Renda)) +
   theme_minimal()
 
 # 8) Análise da variável Idade
-cat("\n\u25B6\uFE0F Análise da variável: Idade\n")
+cat("\n\u25B6\uFE0F [DEBUG] - Análise da variável: Idade\n")
 summary_idade <- summary(dados$Idade)
 print(summary_idade)
 
