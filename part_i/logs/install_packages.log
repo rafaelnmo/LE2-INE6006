@@ -18,3 +18,8 @@
  [1] "jsonlite"  "tidyr"     "readr"     "ggplot2"   "dplyr"     "stats"    
  [7] "graphics"  "grDevices" "utils"     "datasets"  "methods"   "base"     
 
+[[6]]
+ [1] "stringdist" "jsonlite"   "tidyr"      "readr"      "ggplot2"   
+ [6] "dplyr"      "stats"      "graphics"   "grDevices"  "utils"     
+[11] "datasets"   "methods"    "base"      
+
