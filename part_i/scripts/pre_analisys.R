@@ -3,8 +3,11 @@ library(dplyr)
 library(ggplot2)
 library(readr)
 library(tidyr)
+library(stringdist)
 
 ARQUIVO_DADOS <- "../data/servico_publico_dados.csv"
+
+# ARQUIVO_DADOS <- "../rpt/servico_publico_dados_corrigido.csv"
 
 
 if (file.exists(ARQUIVO_DADOS)) {
@@ -96,23 +99,48 @@ cat("\nErros numéricos detectados:\n")
 cat("Valores inválidos em Renda:", renda_invalid, "\n")
 cat("Valores inválidos em Idade (<18 ou >120):", idade_invalid, "\n")
 
+# Função auxiliar para corrigir strings com fuzzy matching
+corrigir_valores <- function(coluna, valores_validos, max_dist = 3) {
+  sapply(coluna, function(valor) {
+    if (is.na(valor) || trimws(valor) == "") return(NA)
+    distancias <- stringdist::stringdist(tolower(valor), tolower(valores_validos), method = "jw")
+    melhor_match <- valores_validos[which.min(distancias)]
+    if (min(distancias) < max_dist / 10) {
+      return(melhor_match)
+    } else {
+      return(NA)
+    }
+  })
+}
 
-# Filtrar registros válidos para todas as variáveis categóricas e numéricas
+# Aplicar correções
+dados$Região <- corrigir_valores(dados$Região, regioes_validas)
+dados$Área <- corrigir_valores(dados$Área, areas_validas)
+dados$Ocupação <- corrigir_valores(dados$Ocupação, ocupacoes_validas)
+dados$Opinião <- corrigir_valores(dados$Opinião, opinioes_validas)
+
+# Corrigir e converter Renda (vírgula → ponto)
+dados$Renda <- as.numeric(gsub(",", ".", dados$Renda))
+
+# Verificação de Idade
+dados$Idade <- as.numeric(dados$Idade)
+dados$Idade[!is.na(dados$Idade) & (dados$Idade < 18 | dados$Idade > 120)] <- NA
+
+# Agora filtra apenas registros que foram possíveis de corrigir
 dados_corrigidos <- dados %>%
   filter(
-    Região %in% regioes_validas,
-    Área %in% areas_validas,
-    Ocupação %in% ocupacoes_validas,
-    Opinião %in% opinioes_validas,
+    !is.na(Região),
+    !is.na(Área),
+    !is.na(Ocupação),
+    !is.na(Opinião),
     !is.na(Renda),
-    Idade >= 18 & Idade <= 120
+    !is.na(Idade)
   )
 
-# Caminho para o novo CSV corrigido
+# Caminho para salvar CSV corrigido
 ARQUIVO_CORRIGIDO <- "../rpt/servico_publico_dados_corrigido.csv"
-
-# Salvar o novo arquivo
 write.csv(dados_corrigidos, file = ARQUIVO_CORRIGIDO, row.names = FALSE)
 
-message("\n💾 [INFO] - Dados corrigidos salvos em: ", ARQUIVO_CORRIGIDO)
+message("\n💾 [INFO] - Dados corrigidos e salvos em: ", ARQUIVO_CORRIGIDO)
+
 
