@@ -21,10 +21,9 @@ https://colab.research.google.com/
 .
 ├── data/                 # Arquivo de dados corrigido
 │   └── servico_publico_dados_corrigido.csv -> ../../part_i/rpt/servico_publico_dados_corrigido.csv
-├── rpt/                  # Resultados finais (PDF, tabelas etc.)
-│   └── part_iv.csv
-├── scripts/              # Scripts e logs de execução
-│   ├── LE2_Part_IV.ipynb
+├── Q15/                  # Pasta com a análise da questão 15 em .ipynb, o resultado em xlsx e os gráficos em png
+├── Q16/              # Pasta com a análise da questão 16 em .ipynb, o resultado em xlsx e os gráficos em png
+
 
 ```
 ### 5. Observações
