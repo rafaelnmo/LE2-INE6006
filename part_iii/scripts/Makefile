@@ -1,19 +1,21 @@
 # ------------------------------------------------------------------------------
-# Makefile para Análise de Dados da Pesquisa ENGABELAX - Pindorama
+# Makefile para Análise em Conjunto de Duas Variáveis da Pesquisa ENGABELAX - Pindorama
 #
 # Autor: Rafael Oliveira
-# Data de Criação: 08/04/2025
-# Última Modificação: 08/04/2025
-# Versão: 1.0.0
+# Data de Criação: 12/04/2025
+# Última Modificação: 12/04/2025
+# Versão: 1.1.0
 #
 # Descrição:
-#   Este Makefile automatiza o processo de instalação de pacotes e execução
-#   do script de análise em R para a base de dados da pesquisa de opinião.
+#   Este Makefile automatiza a instalação de pacotes e execução do script
+#   de análise individual em R sobre os dados corrigidos da pesquisa.
 #
 # Histórico de Versões:
-#   v0.0.1 - 08/04/2025 - Criação inicial do Makefile com targets:
-#              help, install, run, all
+#   v1.2.0 - 12/04/2025 - Adicionado target 'double_variables' com geração de PDF
+#   v1.1.0 - 12/04/2025 - Adicionado target 'individual_analisys' com geração de PDF
+#   v1.0.0 - 08/04/2025 - Versão base com targets: help, install_packages, all
 # ------------------------------------------------------------------------------
+
 
 
 ################################################
@@ -33,10 +35,9 @@ help:
 	@echo "                  Targets Disponiveis                     "
 	@echo "=========================================================="
 	@echo "         help     : Exibe esta mensagem de ajuda          "
-	@echo "        setup     : Instala os pacotes R necessários      "
-	@echo " install_packages : Instala os pacotes R usados no projeto"
-	@echo " pre_analisys     : Executa a análise inicial dos dados e gera relatório em PDF"
-	@echo "         all      : Executa install e run                 "
+	@echo "      install     : Instala os pacotes R necessários       "
+	@echo "         run      : Executa o script principal (R)         "
+	@echo "         all      : Executa install e run                  "
 	@echo "----------------------------------------------------------"
 	@echo "         clean    : Remove arquivos temporários (se houver)"
 	@echo "=========================================================="
@@ -64,10 +65,10 @@ install_packages: setup
 
 
 # Executa o script principal
-pre_analisys: install_packages
+double_variables: install_packages
 	Rscript $(SCRIPTS_DIR)/$@.R | tee $(LOGS_DIR)/$@.log;
 	@/bin/touch $(VPATH)/$@ 
-	@mv Rplots.pdf $(RPT_DIR)/pre_analisys.pdf
+	@mv Rplots.pdf $(RPT_DIR)/$@.pdf
 
 # Faz tudo: instala e executa
 all: install_packages pre_analisys

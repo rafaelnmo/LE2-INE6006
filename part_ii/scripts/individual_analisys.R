@@ -1,3 +1,10 @@
+# ===============================================================
+# Script: individual_analisys.R
+# Descrição: Análise Exploratória para questões 3 a 8
+# Autor: Rafael Oliveira
+# Data: 14/04/2025
+# ===============================================================
+
 # --- Etapa II: Análise Exploratória ---
 
 # Carregar bibliotecas necessárias

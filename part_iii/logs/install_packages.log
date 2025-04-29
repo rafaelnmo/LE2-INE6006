@@ -1,0 +1,16 @@
+[[1]]
+[1] "mvtnorm"   "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+[7] "methods"   "base"     
+
+[[2]]
+[1] "janitor"   "mvtnorm"   "stats"     "graphics"  "grDevices" "utils"    
+[7] "datasets"  "methods"   "base"     
+
+[[3]]
+ [1] "ggplot2"   "janitor"   "mvtnorm"   "stats"     "graphics"  "grDevices"
+ [7] "utils"     "datasets"  "methods"   "base"     
+
+[[4]]
+ [1] "ggmosaic"  "ggplot2"   "janitor"   "mvtnorm"   "stats"     "graphics" 
+ [7] "grDevices" "utils"     "datasets"  "methods"   "base"     
+
